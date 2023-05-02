@@ -124,8 +124,8 @@ map('n', '<leader>cd', ':cd %:p:h<cr>')
 -----------------------------------------------------------
 
 -- Terminal mappings
-map('n', '<C-t>', ':Term<CR>', { noremap = true }) -- open
-map('t', '<Esc>', '<C-\\><C-n>') -- exit
+-- map('n', '<C-t>', ':Term<CR>', { noremap = true }) -- open
+-- map('t', '<Esc>', '<C-\\><C-n>') -- exit
 
 -- NvimTree
 map('n', '<C-n>', ':NvimTreeToggle<CR>') -- open/close
@@ -148,3 +148,6 @@ map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 
 -- Colorizer
 map('n', '<leader>cb', '<cmd>ColorizerToggle<CR>')
+
+-- Symbols-Outline
+map('n', '<leader>so', '<cmd>SymbolsOutline<CR>')

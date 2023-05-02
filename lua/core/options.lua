@@ -34,7 +34,7 @@ opt.wrap = false            -- Wrap on word boundary
 opt.termguicolors = true    -- Enable 24-bit RGB colors
 opt.laststatus = 3          -- Set global statusline
 opt.showmode = false        -- Don't show mode status below statusline
-opt.fillchars = {vert = '┃', horiz = '━'}
+opt.fillchars = {vert = '┃', horiz = '━'}   -- Characters to fill lines in window
 
 -----------------------------------------------------------
 -- Tabs, indent

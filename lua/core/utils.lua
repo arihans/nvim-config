@@ -53,14 +53,19 @@ Utils.update_LSP_servers = function()
                 vim.cmd('MasonInstall ' .. pkg)
             end
         else
-            print('[mason.nvim] Server ' .. pkg .. ' is not a valid entry')
+            for lsp_server_name, lsp_name in pairs(LSP_server_name_map) do
+                if LSP_servers[lsp_name] and not registry.is_installed(lsp_server_name) then
+                    print("[mason.nvim] installing " .. lsp_server_name)
+                    vim.cmd('MasonInstall ' .. lsp_server_name)
+                end
+            end
         end
     end
     for _, pkg in ipairs(registry.get_installed_packages()) do
-        local server = mason_package_to_lspconfig[pkg.name]
-        if LSP_servers[server] == nil then
-            print("[mason.nvim] uninstalling " .. pkg)
-            vim.cmd('MasonUninstall ' .. pkg)
+        local server = LSP_server_name_map[pkg.name] or mason_package_to_lspconfig[pkg.name]
+        if  LSP_servers[server] == nil then
+            print("[mason.nvim] uninstalling " .. pkg.name)
+            vim.cmd('MasonUninstall ' .. pkg.name)
         end
     end
 end

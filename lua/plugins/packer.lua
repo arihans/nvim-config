@@ -114,6 +114,9 @@ return packer.startup(function(use)
         }
     }
 
+    -- Symbols tree view
+    use 'simrat39/symbols-outline.nvim'
+
     -- Statusline
     use {
         'feline-nvim/feline.nvim',
@@ -142,6 +145,15 @@ return packer.startup(function(use)
         config = function()
             require('Comment').setup()
         end
+    }
+
+    -- Better Cooment
+    use {
+      'folke/todo-comments.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require('todo-comments').setup {}
+      end
     }
 
     -- Undo Tree

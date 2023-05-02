@@ -10,11 +10,10 @@ if not status_ok then
   return
 end
 
+-- main setup
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
-  ignore_ft_on_setup = { "alpha" },
   hijack_cursor = true,
   hijack_unnamed_buffer_when_opening = false,
   update_cwd = true,
@@ -23,10 +22,9 @@ nvim_tree.setup {
     update_cwd = false,
   },
   view = {
-    adaptive_size = true,
+    adaptive_size = false,
     side = "left",
     width = 25,
-    hide_root_folder = true,
   },
   git = {
     enable = false,
@@ -43,6 +41,7 @@ nvim_tree.setup {
   renderer = {
     highlight_git = false,
     highlight_opened_files = "none",
+    root_folder_label = false,
 
     indent_markers = {
       enable = false,
