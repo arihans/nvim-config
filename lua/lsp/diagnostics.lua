@@ -6,6 +6,7 @@
 
 vim.diagnostic.config({
     update_in_insert = true,
+    virtual_text = false,   -- Turn off inline diagnostics
     float = {
         focusable = false,
         style = "minimal",

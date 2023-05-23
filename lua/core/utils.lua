@@ -20,7 +20,7 @@ Utils.openURL = function()
         _, _, url = url:find('%w*[////]?[:]?[.]?(%w+[.].*)')
     end
 
-    print('🗘 Opening ' .. url .. ' in Firefox')
+    print('⏳⌛️ Opening ' .. url .. ' in Firefox')
     vim.cmd('silent !firefox --new-tab ' .. '"' .. url .. '"')
 end
 
@@ -43,7 +43,7 @@ end
 
 -- Installs LSPs --------------------------------------------------------------
 Utils.update_LSP_servers = function()
-    print('🗘 Updating LSP servers...')
+    print('⏳⌛️ Updating LSP servers...')
     local registry = require 'mason-registry'
     for server, _ in pairs(LSP_servers) do
         local pkg = mason_lspconfig_to_package[server]
