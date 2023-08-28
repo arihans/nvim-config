@@ -74,6 +74,7 @@ map('n', '<M-l>', ':vertical resize +2<CR>')
 -- Delete Buffers --------------------
 -- Deletes current buffer
 map('n', '<leader>w', function()
+    -- Get number of buffers and if it's greater than 1 delete the current one
     if #vim.fn.getbufinfo({ buflisted = 1 }) > 1 and pcall(vim.cmd, 'bd') then
         print('⚠ Buffer Deleted')
     else
