@@ -36,10 +36,10 @@ map('n', '<C-c>', ':nohl<CR><Esc>')
 
 -- Custom Text Objects ---------------
 -- Inner line textobj
-vim.keymap.set({'x', 'o'}, 'il', ':<C-u>normal ^vg_<CR>', { silent = true })
+vim.keymap.set({ 'x', 'o' }, 'il', ':<C-u>normal ^vg_<CR>', { silent = true })
 
 -- Around line textobj
-vim.keymap.set({'x', 'o'}, 'al', ':<C-u>normal 0vg_<CR>', { silent = true })
+vim.keymap.set({ 'x', 'o' }, 'al', ':<C-u>normal 0vg_<CR>', { silent = true })
 ---------------------------------------
 
 -- Toggle auto-indenting for code paste
@@ -87,32 +87,36 @@ map('n', '<leader>W', ':%bd|e#|bd#<CR>')
 
 -- Black Hole Register ----------------
 -- Map d to black hole register
-map({'n', 'v'}, 'd', '"_d')
+map({ 'n', 'v' }, 'd', '"_d')
 
 -- Map c to black hole register
-map({'n', 'v'}, 'c', '"_c')
+map({ 'n', 'v' }, 'c', '"_c')
 
 -- Map s to black hole register
 -- map('n', 's', '"_s')
 -- map('v', 's', '"_s')
 ---------------------------------------
 
+-- List Management --------------------
+-- Quickfix list
+map({ 'n', 'v' }, '<leader>qq', ':lua Utils.toggleQuickFix()<CR>', { silent = true })
+map({'n', 'v'}, '<leader>qn', ':cn<CR>') -- Go to the next item on the list.
+map({'n', 'v'}, '<leader>qp', ':cp<CR>') -- Go to the previous item on the list.
+map({'n', 'v'}, '<leader>qf', ':cfirst<CR>') -- Go to the first item on the list.
+map({'n', 'v'}, '<leader>ql', ':clast<CR>') -- Go to the last item on the list.
+map({'n', 'v'}, '<leader>qP', ':clast<CR>') -- Go to the next quickfix list.
+map({'n', 'v'}, '<leader>qN', ':clast<CR>') -- Go to the previous quickfix list.
+---------------------------------------
+
 -- Replace current word/selection with last yanked text
-map('n', 's', function()
-    vim.fn.setreg('"', vim.fn.getreg('"'):gsub("\n", ""))
-    vim.cmd('normal ""p')
-end)
-map('v', 's', function()
-    vim.fn.setreg('*', vim.fn.getreg('*'):gsub("\n", ""))
-    vim.cmd('normal "*p')
-end)
+map({ 'n', 'v' }, 's', '"_diwhp')
 
 -- Open url
 map('n', 'gx', 'viW:<C-u> lua Utils.openURL()<CR>', { silent = true })
 map('v', 'gx', ':<C-u> lua Utils.openURL()<CR>', { silent = true })
 
 -- Set working directory to the current file
-map('n', '<leader>cd', ':cd %:p:h<cr>')
+map('n', '<leader>cd', ':cd %:p:h<CR>')
 
 -- Allow saving of files as sudo when I forgot to start vim using sudo.
 -- map('c', 'w!!', vim.cmd('w !sudo tee > /dev/null %'))

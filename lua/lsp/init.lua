@@ -70,7 +70,7 @@ vim.cmd [[
 ]]
 
 -- Install LSP ----------------------
-Utils.update_LSP_servers()
+Utils.updateLSPServers()
 
 -- Diagnostic options ---------------
 require('lsp.diagnostics')

@@ -42,7 +42,7 @@ end
 
 
 -- Installs LSPs --------------------------------------------------------------
-Utils.update_LSP_servers = function()
+Utils.updateLSPServers = function()
     print('⏳⌛️ Updating LSP servers...')
     local registry = require 'mason-registry'
     for server, _ in pairs(LSP_servers) do
@@ -63,9 +63,29 @@ Utils.update_LSP_servers = function()
     end
     for _, pkg in ipairs(registry.get_installed_packages()) do
         local server = LSP_server_name_map[pkg.name] or mason_package_to_lspconfig[pkg.name]
-        if  LSP_servers[server] == nil then
+        if LSP_servers[server] == nil then
             print("[mason.nvim] uninstalling " .. pkg.name)
             vim.cmd('MasonUninstall ' .. pkg.name)
         end
+    end
+end
+
+
+-- Toggle Quickfix List -------------------------------------------------------
+Utils.toggleQuickFix = function()
+    local wininfo = vim.fn.getwininfo()
+    local isQuickFixOpen = false
+
+    for _, info in ipairs(wininfo) do
+        if info.quickfix == 1 then
+            isQuickFixOpen = true
+            break
+        end
+    end
+
+    if not isQuickFixOpen then
+        vim.cmd("copen")
+    else
+        vim.cmd("cclose")
     end
 end
