@@ -171,6 +171,9 @@ return packer.startup(function(use)
         end
     }
 
+    -- Marks
+    use 'chentoast/marks.nvim'
+
     -- Dashboard (start screen)
     use {
         'goolord/alpha-nvim',

@@ -33,10 +33,13 @@ Utils.reloadConfig = function()
         end
     end
 
-    if pcall(dofile, vim.fn.stdpath('config') .. '/init.lua') then
+    local success, error = pcall(dofile, vim.fn.stdpath('config') .. '/init.lua')
+
+    if success then
         print('✓ Config Reloaded')
     else
-        print('✗ Failed to relad config')
+        print('✗ Failed to reload config')
+        print('ERROR :\n', error)
     end
 end
 
