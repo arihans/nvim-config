@@ -108,7 +108,7 @@ return packer.startup(function(use)
     -- Fuzzy Finder
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'nvim-telescope/telescope.nvim',
         requires = {
             'nvim-lua/plenary.nvim'
         }
@@ -126,14 +126,12 @@ return packer.startup(function(use)
     -- Bufferline
     use {
         'akinsho/bufferline.nvim',
-        tag = "v2.*",
         requires = { 'kyazdani42/nvim-web-devicons' },
     }
 
     -- Surround
     use {
         'kylechui/nvim-surround',
-        tag = '*',
         config = function()
             require('nvim-surround').setup()
         end
