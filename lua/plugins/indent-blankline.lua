@@ -13,10 +13,12 @@ end
 
 indent_blankline.setup {
     indent = {
-        char = "▏",
+        char = "┊",
     },
     scope = {
-        show_start = false
+        char = "▍",
+        show_start = false,
+        highlight = { "IblIndent" },
     },
     exclude = {
         filetypes = {
