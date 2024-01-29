@@ -19,20 +19,9 @@ end
 
 _G.LSP_servers = {
     bashls = {},
-    pyright = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true
-            }
-        }
-    },
     clangd = {},
-    html = {},
     cssls = {},
-    tsserver = {},
-    yamlls = {},
+    html = {},
     lua_ls = {
         settings = {
             Lua = {
@@ -54,7 +43,38 @@ _G.LSP_servers = {
                 },
             },
         }
-    }
+    },
+    pyright = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true
+            }
+        }
+    },
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                imports = {
+                    granularity = {
+                        group = "module",
+                    },
+                    prefix = "self",
+                },
+                cargo = {
+                    buildScripts = {
+                        enable = true,
+                    },
+                },
+                procMacro = {
+                    enable = true
+                },
+            }
+        }
+    },
+    tsserver = {},
+    yamlls = {},
 }
 
 _G.LSP_server_name_map = {
