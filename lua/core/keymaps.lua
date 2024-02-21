@@ -69,6 +69,9 @@ map('n', '<M-h>', ':vertical resize -2<CR>')
 map('n', '<M-j>', ':resize -2<CR>')
 map('n', '<M-k>', ':resize +2<CR>')
 map('n', '<M-l>', ':vertical resize +2<CR>')
+
+-- Open file/definition to the side
+map('n', '<C-]>', ':vert winc ]<CR>')
 ---------------------------------------
 
 -- Delete Buffers --------------------
@@ -99,13 +102,13 @@ map({ 'n', 'v' }, 'c', '"_c')
 
 -- List Management --------------------
 -- Quickfix list
-map({'n', 'v'}, '<leader>qq', ':lua Utils.toggleQuickFix()<CR>', { silent = true })
-map({'n', 'v'}, '<leader>qn', ':cn<CR>') -- Go to the next item on the list.
-map({'n', 'v'}, '<leader>qp', ':cp<CR>') -- Go to the previous item on the list.
-map({'n', 'v'}, '<leader>qf', ':cfirst<CR>') -- Go to the first item on the list.
-map({'n', 'v'}, '<leader>ql', ':clast<CR>') -- Go to the last item on the list.
-map({'n', 'v'}, '<leader>qN', ':col<CR>') -- Go to the previous quickfix list.
-map({'n', 'v'}, '<leader>qP', ':cnew<CR>') -- Go to the next quickfix list.
+map({ 'n', 'v' }, '<leader>qq', ':lua Utils.toggleQuickFix()<CR>', { silent = true })
+map({ 'n', 'v' }, '<leader>qn', ':cn<CR>')   -- Go to the next item on the list.
+map({ 'n', 'v' }, '<leader>qp', ':cp<CR>')   -- Go to the previous item on the list.
+map({ 'n', 'v' }, '<leader>qf', ':cfirst<CR>') -- Go to the first item on the list.
+map({ 'n', 'v' }, '<leader>ql', ':clast<CR>') -- Go to the last item on the list.
+map({ 'n', 'v' }, '<leader>qN', ':col<CR>')  -- Go to the previous quickfix list.
+map({ 'n', 'v' }, '<leader>qP', ':cnew<CR>') -- Go to the next quickfix list.
 ---------------------------------------
 
 -- Replace current word/selection with last yanked text
