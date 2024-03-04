@@ -103,12 +103,12 @@ map({ 'n', 'v' }, 'c', '"_c')
 -- List Management --------------------
 -- Quickfix list
 map({ 'n', 'v' }, '<leader>qq', ':lua Utils.toggleQuickFix()<CR>', { silent = true })
-map({ 'n', 'v' }, '<leader>qn', ':cn<CR>')   -- Go to the next item on the list.
-map({ 'n', 'v' }, '<leader>qp', ':cp<CR>')   -- Go to the previous item on the list.
+map({ 'n', 'v' }, '<leader>qn', ':cn<CR>')     -- Go to the next item on the list.
+map({ 'n', 'v' }, '<leader>qp', ':cp<CR>')     -- Go to the previous item on the list.
 map({ 'n', 'v' }, '<leader>qf', ':cfirst<CR>') -- Go to the first item on the list.
-map({ 'n', 'v' }, '<leader>ql', ':clast<CR>') -- Go to the last item on the list.
-map({ 'n', 'v' }, '<leader>qN', ':col<CR>')  -- Go to the previous quickfix list.
-map({ 'n', 'v' }, '<leader>qP', ':cnew<CR>') -- Go to the next quickfix list.
+map({ 'n', 'v' }, '<leader>ql', ':clast<CR>')  -- Go to the last item on the list.
+map({ 'n', 'v' }, '<leader>qN', ':col<CR>')    -- Go to the previous quickfix list.
+map({ 'n', 'v' }, '<leader>qP', ':cnew<CR>')   -- Go to the next quickfix list.
 ---------------------------------------
 
 -- Replace current word/selection with last yanked text
@@ -159,3 +159,7 @@ map('n', '<leader>cb', '<cmd>ColorizerToggle<CR>')
 
 -- Symbols-Outline
 map('n', '<leader>so', '<cmd>SymbolsOutline<CR>')
+
+-- Codeium
+map('i', '<M-a>', function() return vim.fn['codeium#Complete']() end)
+map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end)

@@ -106,7 +106,7 @@ return packer.startup(function(use)
     -------------------------------------
 
     -- Fuzzy Finder
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
@@ -147,11 +147,11 @@ return packer.startup(function(use)
 
     -- Better Cooment
     use {
-      'folke/todo-comments.nvim',
-      requires = 'nvim-lua/plenary.nvim',
-      config = function()
-        require('todo-comments').setup {}
-      end
+        'folke/todo-comments.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('todo-comments').setup {}
+        end
     }
 
     -- Undo Tree
@@ -177,6 +177,9 @@ return packer.startup(function(use)
         'goolord/alpha-nvim',
         requires = { 'kyazdani42/nvim-web-devicons' },
     }
+
+    -- Codeium Coding Assistant
+    use 'Exafunction/codeium.vim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
