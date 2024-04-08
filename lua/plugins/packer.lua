@@ -58,9 +58,6 @@ return packer.startup(function(use)
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
 
-    -- Tag viewer
-    use 'preservim/tagbar'
-
     -- Treesitter interface
     use {
         'nvim-treesitter/nvim-treesitter',

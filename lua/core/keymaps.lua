@@ -141,18 +141,17 @@ map('n', '<C-n>', ':NvimTreeToggle<CR>') -- open/close
 -- UndoTree --------------------------
 map('n', '<leader>ut', ':UndotreeToggle<CR>')
 -- UndoTree change layout
-map('n', '<leader>ul', function() vim.g.undotree_ToggleLayout() end)
+map('n', '<leader>ul', function() vim.g.undotree_ToggleLayout() end, { expr = true })
 map('n', '<leader>uu', '') -- capture key
 ---------------------------------------
 
--- Tagbar
-map('n', '<leader>tb', ':TagbarToggle<CR>') -- open/close
-
 -- Telescope
+map('n', '<leader>tt', '<cmd>Telescope<CR>')
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
-map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
+map('n', '<leader>td', '<cmd>Telescope diagnostics<CR>')
+map('n', '<leader>tb', '<cmd>Telescope buffers<CR>')
+map('n', '<leader>tht', '<cmd>Telescope help_tags<CR>')
 
 -- Colorizer
 map('n', '<leader>cb', '<cmd>ColorizerToggle<CR>')
@@ -161,5 +160,6 @@ map('n', '<leader>cb', '<cmd>ColorizerToggle<CR>')
 map('n', '<leader>so', '<cmd>SymbolsOutline<CR>')
 
 -- Codeium
-map('i', '<M-a>', function() return vim.fn['codeium#Complete']() end)
-map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end)
+map('i', '<M-a>', function() return vim.fn['codeium#Complete']() end, { expr = true })
+map('i', '<Right>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
