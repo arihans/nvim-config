@@ -5,6 +5,11 @@
 -- Plugin: undotree
 -- url: https://github.com/mbbill/undotree/blob/master/plugin/undotree.vim
 
+local status_ok = pcall(require, 'undotree')
+if not status_ok then
+    return
+end
+
 vim.g.undotree_WindowLayout = 1
 vim.g.undotree_SplitWidth = 26
 

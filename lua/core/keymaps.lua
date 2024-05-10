@@ -162,4 +162,6 @@ map('n', '<leader>so', '<cmd>SymbolsOutline<CR>')
 -- Codeium
 map('i', '<M-a>', function() return vim.fn['codeium#Complete']() end, { expr = true })
 map('i', '<Right>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+map('i', '<M-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+map('i', '<M-]>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+map('i', '<M-[>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
