@@ -1,5 +1,5 @@
 -- Package Manger
-require('plugins/packer')
+require('plugins/lazy')
 require('plugins/mason')
 
 -- Core
