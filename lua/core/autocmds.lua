@@ -25,11 +25,37 @@ autocmd('BufWritePost', {
 autocmd('UIEnter', {
     group = 'ReloadConfig',
     callback = function()
-        if pcall(require, 'colors/' .. vim.g.colorscheme) then
-            print('[🎨] Colorscheme Reloaded')
-        else
-            print('[🎨] Invalid colorscheme')
-        end
+        vim.defer_fn(function()
+            if pcall(require, 'colors/' .. vim.g.colorscheme) then
+                print('[🎨] Colorscheme Reloaded')
+            else
+                print('[🎨] Invalid colorscheme')
+            end
+        end, 0)
+    end
+})
+
+-- Update/Install Mason packages
+augroup('MasonUpdate', { clear = true })
+autocmd('BufWritePost', {
+    group = 'MasonUpdate',
+    pattern = 'lsp/init.lua,lsp/linter.lua',
+    callback = function()
+        Utils.updateMasonPackages()
+    end,
+})
+autocmd('UIEnter', {
+    group = 'MasonUpdate',
+    callback = function()
+        Utils.updateMasonPackages()
+    end,
+})
+
+-- On any file write
+autocmd('BufWritePost', {
+    pattern = '*',
+    callback = function()
+        require('lint').try_lint()
     end
 })
 

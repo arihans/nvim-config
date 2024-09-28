@@ -88,6 +88,7 @@ _G.mason_lspconfig_to_package = {
     ["lelwel_ls"] = "lelwel",
     ["lemminx"] = "lemminx",
     ["ltex"] = "ltex-ls",
+    ["lua_ls"] = "lua-language-server",
     ["luau_lsp"] = "luau-lsp",
     ["marksman"] = "marksman",
     ["mm0_ls"] = "metamath-zero-lsp",

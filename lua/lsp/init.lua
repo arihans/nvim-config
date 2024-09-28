@@ -77,9 +77,6 @@ _G.LSP_servers = {
     yamlls = {},
 }
 
-_G.LSP_server_name_map = {
-    ['lua-language-server'] = 'lua_ls'
-}
 
 -- Reload ---------------------------
 vim.cmd [[
@@ -89,11 +86,11 @@ vim.cmd [[
   augroup end
 ]]
 
--- Install LSP ----------------------
-Utils.updateLSPServers()
-
 -- Diagnostic options ---------------
 require('lsp.diagnostics')
+
+-- Linter ---------------------------
+require('lsp.linter')
 
 -- nvim-cmp -------------------------
 -- Additional capabilities supported by nvim-cmp
@@ -104,12 +101,12 @@ local on_attach = function(client, bufnr)
     -- Highlighting references
     if client.server_capabilities.document_highlight then
         vim.api.nvim_exec([[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
+          augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END
+        ]], false)
     end
 
     -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -128,7 +125,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -154,7 +151,7 @@ end
 for lsp, extra in pairs(LSP_servers) do
     lspconfig[lsp].setup {
         on_attach = on_attach,
-        capabilities = capabilities,
+        capabilities = Capabilities,
         flags = {
             -- default in neovim 0.7+
             debounce_text_changes = 150,

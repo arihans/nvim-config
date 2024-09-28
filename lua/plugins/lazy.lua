@@ -62,6 +62,9 @@ lazy.setup({
     { 'williamboman/mason.nvim' },
     -------------------------------------
 
+    -- Linter
+    { 'mfussenegger/nvim-lint' },
+
     -- Autocomplete
     {
         'hrsh7th/nvim-cmp',
@@ -154,7 +157,7 @@ lazy.setup({
 }, {
     install = {
         missing = true,                                                                        -- Install missing plugins on startup
-        colorscheme = { "dracula", "onedark", "monokai", "rose-pine", "material", "adwaita" }, -- Set color schemes
+        colorscheme = { "onedark", "dracula", "monokai", "rose-pine", "material", "adwaita" }, -- Set color schemes
     },
     ui = {
         -- border = "rounded", -- Set border style for UI components
