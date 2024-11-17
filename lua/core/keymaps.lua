@@ -152,6 +152,7 @@ map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>td', '<cmd>Telescope diagnostics<CR>')
 map('n', '<leader>tb', '<cmd>Telescope buffers<CR>')
 map('n', '<leader>tht', '<cmd>Telescope help_tags<CR>')
+map('n', '<leader>tdt', '<cmd>TodoTelescope<CR>')
 
 -- Colorizer
 map('n', '<leader>cb', '<cmd>ColorizerToggle<CR>')
