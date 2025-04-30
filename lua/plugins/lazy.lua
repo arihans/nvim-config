@@ -153,7 +153,8 @@ lazy.setup({
     },
 
     -- Codeium Coding Assistant
-    { 'Exafunction/codeium.vim' },
+    -- { 'Exafunction/codeium.vim' },
+    { 'Exafunction/codeium.vim', enabled = false },
 }, {
     install = {
         missing = true,                                                                        -- Install missing plugins on startup
