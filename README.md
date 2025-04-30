@@ -48,7 +48,7 @@ This Neovim configuration is organized in a modular structure using Lua:
 
 2. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/nvim-config.git ~/.config/nvim
+   git clone https://github.com/Leptons1618/nvim-config.git ~/.config/nvim
    ```
 
 3. Start Neovim, and the plugin manager will automatically install all plugins:
