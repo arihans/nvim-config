@@ -161,7 +161,16 @@ map('n', '<leader>so', '<cmd>SymbolsOutline<CR>')
 
 -- Codeium
 map('i', '<M-a>', function() return vim.fn['codeium#Complete']() end, { expr = true })
-map('i', '<Right>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+map('i', '<Right>', function()
+    -- Accept Codeium suggestion if available, otherwise insert a literal right arrow
+    if vim.fn.exists('*codeium#Accept') == 1 then
+        local ok, res = pcall(vim.fn['codeium#Accept'])
+        if ok and res then
+            return res
+        end
+    end
+    return '<Right>'
+end, { expr = true })
 map('i', '<M-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
 map('i', '<M-]>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
 map('i', '<M-[>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })

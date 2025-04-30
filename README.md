@@ -128,6 +128,8 @@ This section provides an overview of the default and custom keybindings included
 #### Codeium (AI Completion)
 Use these in insert mode:
 - `<M-a>` : Trigger Codeium completion
-- `<Right>` : Accept suggestion
+- `<Right>` : Accept suggestion (falls back to a literal arrow when no suggestion is available)
 - `<M-x>` : Clear suggestion
 - `<M-[>` / `<M-]>` : Cycle completions backward/forward
+
+Note: The `<Right>` key is mapped to first attempt accepting a Codeium suggestion if Codeium is active; otherwise, it inserts a normal right-arrow keypress. This avoids errors when Codeium is disabled or unavailable.
