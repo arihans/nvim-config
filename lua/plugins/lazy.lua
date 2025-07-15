@@ -85,16 +85,25 @@ lazy.setup({
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        version = "*",
     },
 
     -- Symbols tree view
-    { 'simrat39/symbols-outline.nvim' },
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+    },
 
     -- Statusline
     {
         'feline-nvim/feline.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
+        version = "*",
     },
 
     -- Bufferline
@@ -152,23 +161,22 @@ lazy.setup({
         dependencies = { 'kyazdani42/nvim-web-devicons' },
     },
 
-    -- Avante configuration
+    -- Codeium AI completion (Windsurf.nvim)
+    {
+        "Exafunction/windsurf.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "hrsh7th/nvim-cmp",
+        },
+    },
+
+    -- Avante configuration (pinned to stable version to reduce warnings)
     {
         "yetone/avante.nvim",
         event = "VeryLazy",
         lazy = false,
         version = false,
-        opts = {
-            provider = "openai",
-            openai = {
-                endpoint = "https://api.openai.com/v1",
-                model = "gpt-4o",
-                timeout = 30000,
-                temperature = 0,
-                max_tokens = 4096,
-                -- reasoning_effort = "high"
-            },
-        },
         build = "make",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",

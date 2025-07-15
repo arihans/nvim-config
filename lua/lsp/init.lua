@@ -73,7 +73,7 @@ _G.LSP_servers = {
             }
         }
     },
-    ls_ls = {},
+    lua_ls = {},
     yamlls = {},
 }
 

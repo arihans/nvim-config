@@ -11,39 +11,45 @@ if not status_ok then
 end
 
 avante.setup({
-    -- Set providers
-    provider = "claude",
+    -- Set providers (choose your preferred default)
+    provider = "claude", -- Options: "claude", "openai"
     auto_suggestions_provider = "claude",
     cursor_applying_provider = nil, -- Uses provider setting by default
 
-    -- Claude configuration
-    claude = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-sonnet-20240229",
-        temperature = 0,
-        max_tokens = 4096,
-    },
+    -- Provider configurations (new format)
+    providers = {
+        claude = {
+            endpoint = "https://api.anthropic.com",
+            model = "claude-sonnet-4-20250514",
+            extra_request_body = {
+                temperature = 0,
+                max_tokens = 4096,
+            },
+            timeout = 30000,
+        },
+        openai = {
+            endpoint = "https://api.openai.com/v1",
+            model = "gpt-4o",
+            extra_request_body = {
+                temperature = 0,
+                max_tokens = 4096,
+            },
+            timeout = 30000,
+        },
+    },  
 
-    -- OpenAI configuration
-    openai = {
-        endpoint = "https://api.openai.com/v1",
-        model = "gpt-4",
-        temperature = 0,
-        max_tokens = 4096,
-    },
-
-    -- Experimental dual boost mode
+    -- Experimental dual boost mode (combine multiple providers)
     dual_boost = {
         enabled = false,
-        first_provider = "openai",
-        second_provider = "claude",
+        first_provider = "claude",
+        second_provider = "openai",
         prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
         timeout = 60000,
     },
 
     -- Core behavior settings
     behaviour = {
-        auto_suggestions = false,
+        auto_suggestions = false, -- Disabled to prevent errors
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,

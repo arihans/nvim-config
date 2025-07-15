@@ -158,7 +158,16 @@ map('n', '<leader>tdt', '<cmd>TodoTelescope<CR>')
 map('n', '<leader>cb', '<cmd>ColorizerToggle<CR>')
 
 -- Symbols-Outline
-map('n', '<leader>so', '<cmd>SymbolsOutline<CR>')
+map('n', '<leader>so', '<cmd>AerialToggle<CR>')
 
 -- Avante
 map('n', '<leader>aa', '<cmd>AvanteAsk<CR>')
+
+-- Codeium AI completion
+-- Note: These keymaps are handled by the windsurf.nvim plugin configuration
+-- Keymaps are set in lua/plugins/codeium.lua:
+-- <Tab> - Accept suggestion
+-- <C-j> - Next suggestion
+-- <C-k> - Previous suggestion
+-- <C-x> - Clear suggestion
+-- <M-a> - Trigger suggestion manually
