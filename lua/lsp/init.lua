@@ -73,7 +73,8 @@ _G.LSP_servers = {
             }
         }
     },
-    tsserver = {},
+    -- tsserver = {},
+    ts_ls = {},
     yamlls = {},
 }
 
