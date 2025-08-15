@@ -1,8 +1,18 @@
 # nvim-config
 
-My lua based NeoVim config
+My lua based NeoVim configuration
 
 ![Screenshot](screenshot.png)
+
+## Features
+
+- **LSP Integration**: Full language server support with automatic installation via Mason
+- **Smart Completion**: Enhanced autocomplete with nvim-cmp and multiple sources
+- **Syntax Highlighting**: Advanced Treesitter-based syntax highlighting
+- **File Management**: Efficient file explorer (nvim-tree) and fuzzy finder (Telescope)
+- **Git Integration**: Built-in Git support with visual indicators and fugitive
+- **Modern UI**: Clean statusline, buffer management, and dashboard
+- **AI Assistance**: Optional AI-powered code completion and chat features
 
 ## Project Structure
 
@@ -34,12 +44,20 @@ This Neovim configuration is organized in a modular structure using Lua:
 - **plugins/bufferline.lua**: Buffer management
 - **plugins/nvim-telescope.lua**: Fuzzy finder configuration
 - **plugins/nvim-treesitter.lua**: Advanced syntax highlighting
-- **plugins/nvim-cmp.lua**: Completion engine configuration
-- **plugins/symbols-outline.lua**: Symbol navigation and outline view
+- **plugins/nvim-cmp.lua**: Completion engine configuration with AI integration
+- **plugins/aerial.lua**: Symbol navigation and outline view
 - **plugins/undotree.lua**: Undo history visualization
 - **plugins/alpha-nvim.lua**: Dashboard configuration
 - **plugins/indent-blankline.lua**: Indentation guides
 - **plugins/nvim-colorizer.lua**: Color highlighting in code
+- **plugins/neocodium.lua**: AI code completion configuration
+- **plugins/avante.lua**: AI code chat configuration
+- **plugins/comment-nvim.lua**: Enhanced commenting
+- **plugins/marks-nvim.lua**: Bookmark management
+- **plugins/todo-comments.nvim**: TODO highlighting and search
+- **plugins/nvim-surround.lua**: Surround operations
+- **plugins/gitsigns.nvim**: Git integration
+- **plugins/vim-fugitive.lua**: Git wrapper
 
 ### Initialization
 
@@ -143,14 +161,36 @@ This section provides an overview of the default and custom keybindings included
 - `<leader>cb` : Toggle Colorizer
 - `<leader>so` : Toggle SymbolsOutline
 
-#### Codeium AI Completion (Windsurf.nvim)
+#### AI-Powered Development
 
-Use these in insert mode:
+##### Neocodeium AI Completion
 
-- `<Tab>` : Accept suggestion
-- `<C-j>` : Next suggestion
-- `<C-k>` : Previous suggestion
-- `<C-x>` : Clear suggestion
-- `<M-a>` : Trigger suggestion manually
+Use these in insert mode for AI-powered code suggestions:
 
-Note: Codeium provides AI-powered code completion that works alongside nvim-cmp. It offers intelligent suggestions based on your codebase and context.
+- `<A-]>` - Accept word suggestion
+- `<A-a>` - Accept line suggestion
+- `<A-e>` - Cycle or complete suggestion
+- `<A-r>` - Cycle or complete suggestion (reverse)
+- `<A-c>` - Clear suggestion
+
+##### Avante AI Chat
+
+- `<leader>aa` - Start AI conversation about your code
+
+**Note:** Neocodeium provides free AI-powered code completion that works seamlessly with nvim-cmp. It offers intelligent suggestions based on your codebase and context. Avante enables interactive AI conversations about your code with support for multiple AI providers.
+
+## AI Features Setup (Optional)
+
+### Neocodeium (AI Code Completion)
+
+1. Run `:NeoCodeium auth` to authenticate with Windsurf
+2. The plugin integrates automatically with nvim-cmp
+3. Configure in `lua/plugins/neocodium.lua` if needed
+
+### Avante (AI Code Chat)
+
+1. Set your API keys in environment variables for Claude/OpenAI
+2. Press `<leader>aa` to start an AI conversation
+3. Configure providers in `lua/plugins/avante.lua`
+
+Both AI features are optional and the configuration works fully without them.

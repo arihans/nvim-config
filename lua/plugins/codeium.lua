@@ -2,117 +2,115 @@
 -- Codeium AI completion configuration (Windsurf.nvim)
 -----------------------------------------------------------
 
--- Plugin: windsurf.nvim (Codeium)
+-- Plugin: windsurf.nvim
 -- url: https://github.com/Exafunction/windsurf.nvim
 
-local status_ok, windsurf = pcall(require, 'windsurf')
+local status_ok, codeium = pcall(require, 'codeium')
 if not status_ok then
     return
 end
 
-windsurf.setup({
+-- Simple setup - the plugin automatically registers with nvim-cmp
+-- and provides virtual text completion
+codeium.setup({
     -- Enable Codeium
     enabled = true,
     
-    -- Keymaps configuration
-    keymaps = {
-        -- Accept suggestion
-        accept = "<Tab>",
-        
-        -- Cycle through suggestions
-        next = "<C-j>",
-        prev = "<C-k>",
-        
-        -- Clear suggestion
-        clear = "<C-x>",
-        
-        -- Trigger suggestion manually
-        trigger = "<M-a>",
-    },
+    -- The plugin automatically integrates with nvim-cmp
+    -- and provides a source called "codeium"
     
-    -- UI configuration
-    ui = {
-        -- Show suggestion in a floating window
-        floating = true,
-        
-        -- Border style for floating window
-        border = "rounded",
-        
-        -- Highlight the suggestion
-        highlight = "Pmenu",
-        
-        -- Show suggestion after typing this many characters
-        trigger_chars = 2,
-    },
-    
-    -- Completion settings
-    completion = {
-        -- Maximum number of suggestions to show
-        max_suggestions = 10,
-        
-        -- Timeout for API calls (in milliseconds)
-        timeout = 5000,
-        
-        -- Enable/disable specific features
-        features = {
-            -- Enable function completion
-            functions = true,
-            
-            -- Enable variable completion
-            variables = true,
-            
-            -- Enable import completion
-            imports = true,
-            
-            -- Enable snippet completion
-            snippets = true,
+    -- Virtual text configuration for inline suggestions
+    virtual_text = {
+        enabled = true,
+        filetypes = {},
+        default_filetype_enabled = true,
+        manual = false,
+        idle_delay = 75,
+        virtual_text_priority = 65535,
+        map_keys = true,
+        accept_fallback = nil,
+        key_bindings = {
+            accept = "<Tab>",
+            accept_word = false,
+            accept_line = false,
+            clear = "<C-x>",
+            next = "<C-j>",
+            prev = "<C-k>",
         },
     },
     
-    -- Language-specific settings
-    languages = {
-        -- JavaScript/TypeScript
-        javascript = {
-            enabled = true,
-            trigger_chars = 1,
+    -- Enable cmp source for nvim-cmp integration
+    enable_cmp_source = true,
+    
+    -- Enable chat functionality
+    enable_chat = true,
+    
+    -- Enable local search
+    enable_local_search = true,
+    
+    -- Enable index service
+    enable_index_service = true,
+    
+    -- Search and file watching limits
+    search_max_workspace_file_count = 5000,
+    file_watch_max_dir_count = 50000,
+    
+    -- Workspace root detection
+    workspace_root = {
+        use_lsp = true,
+        find_root = nil,
+        paths = {
+            ".bzr",
+            ".git",
+            ".hg",
+            ".svn",
+            "_FOSSIL_",
         },
-        typescript = {
-            enabled = true,
-            trigger_chars = 1,
-        },
-        
-        -- Python
-        python = {
-            enabled = true,
-            trigger_chars = 2,
-        },
-        
-        -- Lua
-        lua = {
-            enabled = true,
-            trigger_chars = 2,
-        },
-        
-        -- Go
-        go = {
-            enabled = true,
-            trigger_chars = 2,
-        },
-        
-        -- Rust
-        rust = {
-            enabled = true,
-            trigger_chars = 2,
-        },
-        
-        -- C/C++
-        c = {
-            enabled = true,
-            trigger_chars = 2,
-        },
-        cpp = {
-            enabled = true,
-            trigger_chars = 2,
-        },
+    },
+    
+    -- Language server configuration
+    language_server_download_url = "https://github.com",
+    
+    -- API configuration
+    api = {
+        host = "server.codeium.com",
+        port = "443",
+        path = "/",
+        portal_url = "codeium.com",
+    },
+    
+    -- Tools configuration
+    tools = {},
+    
+    -- Wrapper configuration
+    wrapper = nil,
+    
+    -- Enterprise mode
+    enterprise_mode = nil,
+    
+    -- Proxy detection
+    detect_proxy = nil,
+    
+    -- Quiet mode
+    quiet = false,
+    
+    -- Server health check configuration
+    server = {
+        -- Enable automatic server restart on failure
+        auto_restart = true,
+        -- Health check interval in seconds
+        health_check_interval = 30,
+        -- Maximum retry attempts
+        max_retries = 3,
+        -- Retry delay in seconds
+        retry_delay = 5,
+    },
+    
+    -- Authentication configuration
+    auth = {
+        -- Enable automatic authentication
+        auto_auth = true,
+        -- Authentication timeout in seconds
+        timeout = 30,
     },
 })
