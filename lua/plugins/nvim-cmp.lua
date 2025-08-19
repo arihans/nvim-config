@@ -74,8 +74,8 @@ cmp.setup({
 		end,
 	},
 
-	-- Key mapping (avoid Tab to prevent conflicts with Copilot)
-	mapping = {
+	-- Key mapping
+	mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -86,15 +86,11 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		-- Use Ctrl+j/k for menu navigation instead of Tab
-		["<C-j>"] = cmp.mapping.select_next_item(),
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-	},
+	}),
 
 	-- Load sources, see: https://github.com/topics/nvim-cmp
 	sources = {
 		{ name = "nvim_lsp" },
-		{ name = "neocodeium" },
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "buffer" },

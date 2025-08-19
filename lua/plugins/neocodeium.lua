@@ -19,7 +19,8 @@ neocodeium.setup({
 	bin = nil,
 	-- When set to `true`, autosuggestions are disabled.
 	-- Use `require'neocodeium'.cycle_or_complete()` to show suggestions manually
-	manual = false,
+	-- Set to true for nvim-cmp integration
+	manual = true,
 	-- Information about the API server to use
 	server = {
 		-- API URL to use (for Enterprise mode)
@@ -30,7 +31,7 @@ neocodeium.setup({
 	-- Set to `false` to disable showing the number of suggestions label in the line number column
 	show_label = true,
 	-- Set to `true` to enable suggestions debounce
-	debounce = false,
+	debounce = true,
 	-- Maximum number of lines parsed from loaded buffers (current buffer always fully parsed)
 	-- Set to `0` to disable parsing non-current buffers (may lower suggestion quality)
 	-- Set it to `-1` to parse all lines
@@ -46,7 +47,7 @@ neocodeium.setup({
 	-- shows full lines when on the end of the suggested (accepted) line.
 	-- So it is less distracting and works better with other completion plugins.
 	single_line = {
-		enabled = false,
+		enabled = true,
 		label = "...", -- Label indicating that there is multi-line suggestion.
 	},
 	-- Set to a function that returns `true` if a buffer should be enabled

@@ -175,25 +175,21 @@ map("n", "<leader>gl", ":Git pull<CR>") -- Pull
 map("n", "<leader>gf", ":Telescope git_status<CR>") -- Fuzzy find changed files
 
 -- Neocodeium AI completion
--- Neocodeium keymaps are configured in lua/plugins/lazy.lua:
--- <Tab> - Accept suggestion
--- <C-j> - Next suggestion
--- <C-k> - Previous suggestion
--- <C-]> - Dismiss suggestion
-
--- Neocodeium AI completion keybindings
-map("i", "<A-]>", function()
+map("i", "<A-f>", function()
+	require("neocodeium").accept()
+end, { silent = true }) -- Accept suggestion
+map("i", "<A-w>", function()
 	require("neocodeium").accept_word()
-end) -- Accept word suggestion
+end, { silent = true }) -- Accept word
 map("i", "<A-a>", function()
 	require("neocodeium").accept_line()
-end) -- Accept line suggestion
+end, { silent = true }) -- Accept line
 map("i", "<A-e>", function()
 	require("neocodeium").cycle_or_complete()
-end) -- Cycle or complete suggestion
+end, { silent = true }) -- Cycle next suggestion
 map("i", "<A-r>", function()
 	require("neocodeium").cycle_or_complete(-1)
-end) -- Cycle or complete suggestion (reverse)
+end, { silent = true }) -- Cycle previous suggestion
 map("i", "<A-c>", function()
 	require("neocodeium").clear()
-end) -- Clear suggestion
+end, { silent = true }) -- Clear suggestions

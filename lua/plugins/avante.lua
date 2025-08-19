@@ -29,18 +29,18 @@ avante.setup({
         },
         openai = {
             endpoint = "https://api.openai.com/v1",
-            model = "gpt-4o",
+            model = "gpt-5",
             extra_request_body = {
                 temperature = 0,
                 max_tokens = 4096,
             },
             timeout = 30000,
         },
-    },  
+    },
 
     -- Experimental dual boost mode (combine multiple providers)
     dual_boost = {
-        enabled = false,
+        enabled = true,
         first_provider = "claude",
         second_provider = "openai",
         prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
@@ -141,4 +141,4 @@ avante.setup({
         debounce = 600,
         throttle = 600,
     },
-}) 
+})
