@@ -50,7 +50,7 @@ This Neovim configuration is organized in a modular structure using Lua:
 - **plugins/alpha-nvim.lua**: Dashboard configuration
 - **plugins/indent-blankline.lua**: Indentation guides
 - **plugins/nvim-colorizer.lua**: Color highlighting in code
-- **plugins/neocodium.lua**: AI code completion configuration
+- **plugins/neocodeium.lua**: AI code completion configuration
 - **plugins/avante.lua**: AI code chat configuration
 - **plugins/comment-nvim.lua**: Enhanced commenting
 - **plugins/marks-nvim.lua**: Bookmark management

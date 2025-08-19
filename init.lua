@@ -25,6 +25,6 @@ require('plugins/aerial')
 require('plugins/marks-nvim')
 require('plugins/undotree')
 require('plugins/nvim-cmp') -- Load nvim-cmp first, then neocodium to ensure proper integration
--- require('plugins/codeium') -- DISABLED: Using Neocodium instead
+-- require('plugins/codeium') -- DISABLED: Using Neocodeium instead
 require('plugins/avante') -- Load Avante for code chat
-require('plugins/neocodium') -- Load Neocodium for AI completions
+require('plugins/neocodeium') -- Load Neocodium for AI completions

@@ -174,8 +174,8 @@ map("n", "<leader>gp", ":Git push<CR>") -- Push
 map("n", "<leader>gl", ":Git pull<CR>") -- Pull
 map("n", "<leader>gf", ":Telescope git_status<CR>") -- Fuzzy find changed files
 
--- Neocodium AI completion
--- Neocodium keymaps are configured in lua/plugins/lazy.lua:
+-- Neocodeium AI completion
+-- Neocodeium keymaps are configured in lua/plugins/lazy.lua:
 -- <Tab> - Accept suggestion
 -- <C-j> - Next suggestion
 -- <C-k> - Previous suggestion

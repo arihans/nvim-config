@@ -219,7 +219,7 @@ lazy.setup({
 		},
 	},
 
-	-- Neocodium for AI completions
+	-- Neocodeium for AI completions
 	{
 		"monkoose/neocodeium",
 		event = "VeryLazy",
