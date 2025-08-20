@@ -165,13 +165,28 @@ map("n", "<leader>so", "<cmd>AerialToggle<CR>")
 -- Avante for code chat
 map("n", "<leader>aa", "<cmd>AvanteAsk<CR>")
 
--- Git (vim-fugitive)
-map("n", "<leader>gs", ":Git<CR>") -- Open Git status window
-map("n", "<leader>gd", ":Git diff<CR>") -- Show diff
-map("n", "<leader>gb", ":Git blame<CR>") -- Show blame
-map("n", "<leader>gc", ":Git commit<CR>") -- Commit
-map("n", "<leader>gp", ":Git push<CR>") -- Push
-map("n", "<leader>gl", ":Git pull<CR>") -- Pull
+-- Neogit - Interactive Git interface
+map("n", "<leader>gs", function()
+	require("neogit").open()
+end, { desc = "Open Neogit status" })
+map("n", "<leader>gg", function()
+	require("neogit").open()
+end, { desc = "Open Neogit" })
+map("n", "<leader>gc", function()
+	require("neogit").open({ "commit" })
+end, { desc = "Open Neogit commit popup" })
+map("n", "<leader>gp", function()
+	require("neogit").open({ "push" })
+end, { desc = "Open Neogit push popup" })
+map("n", "<leader>gl", function()
+	require("neogit").open({ "pull" })
+end, { desc = "Open Neogit pull popup" })
+map("n", "<leader>gb", function()
+	require("neogit").open({ "branch" })
+end, { desc = "Open Neogit branch popup" })
+map("n", "<leader>gm", function()
+	require("neogit").open({ kind = "split" })
+end, { desc = "Open Neogit in split" })
 map("n", "<leader>gf", ":Telescope git_status<CR>") -- Fuzzy find changed files
 
 -- Neocodeium AI completion

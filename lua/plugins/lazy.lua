@@ -157,8 +157,15 @@ lazy.setup({
 		end,
 	},
 
-	-- Git wrapper (vim-fugitive)
-	{ "tpope/vim-fugitive" },
+	-- Neogit - Interactive Git interface
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	},
 
 	-- Marks
 	{ "chentoast/marks.nvim" },

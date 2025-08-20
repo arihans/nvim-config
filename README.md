@@ -10,7 +10,7 @@ My lua based NeoVim configuration
 - **Smart Completion**: Enhanced autocomplete with nvim-cmp and multiple sources
 - **Syntax Highlighting**: Advanced Treesitter-based syntax highlighting
 - **File Management**: Efficient file explorer (nvim-tree) and fuzzy finder (Telescope)
-- **Git Integration**: Built-in Git support with visual indicators and fugitive
+- **Git Integration**: Comprehensive Git support with visual indicators and interactive Neogit interface
 - **Modern UI**: Clean statusline, buffer management, and dashboard
 - **AI Assistance**: Optional AI-powered code completion and chat features
 
@@ -57,7 +57,7 @@ This Neovim configuration is organized in a modular structure using Lua:
 - **plugins/todo-comments.nvim**: TODO highlighting and search
 - **plugins/nvim-surround.lua**: Surround operations
 - **plugins/gitsigns.nvim**: Git integration
-- **plugins/vim-fugitive.lua**: Git wrapper
+- **plugins/neogit.lua**: Interactive Git interface
 
 ### Initialization
 
@@ -160,6 +160,19 @@ This section provides an overview of the default and custom keybindings included
   - `<leader>tht` : Help tags search
 - `<leader>cb` : Toggle Colorizer
 - `<leader>so` : Toggle SymbolsOutline
+
+#### Git Integration
+
+##### Neogit (Interactive Git Interface)
+
+- `<leader>gs` : Open Neogit status (main interface)
+- `<leader>gg` : Open Neogit main interface
+- `<leader>gc` : Open Neogit commit popup
+- `<leader>gp` : Open Neogit push popup
+- `<leader>gl` : Open Neogit pull popup
+- `<leader>gb` : Open Neogit branch popup
+- `<leader>gm` : Open Neogit in split view
+- `<leader>gf` : Fuzzy find changed files (Telescope)
 
 #### AI-Powered Development
 
