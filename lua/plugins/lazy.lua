@@ -216,13 +216,6 @@ lazy.setup({
 					},
 				},
 			},
-			{
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					file_types = { "markdown", "Avante" },
-					ft = { "markdown", "Avante" },
-				},
-			},
 		},
 	},
 
@@ -232,16 +225,31 @@ lazy.setup({
 		event = "VeryLazy",
 	},
 
-    -- A collection of QoL plugins for Neovim
-    -- Right now used by avante.nvim
-    {
-        "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
+	-- Markdown rendering
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {
+			file_types = { "markdown", "Avante" },
+			ft = { "markdown", "Avante" },
+			tables = {
+				strict = true,
+			},
+			refresh = {
+				interval = 1000,
+			},
+		},
+	},
+
+	-- A collection of QoL plugins for Neovim
+	-- Right now used by avante.nvim
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
 		config = function()
 			require("snacks").setup({})
 		end,
-    },
+	},
 }, {
 	install = {
 		missing = true, -- Install missing plugins on startup
