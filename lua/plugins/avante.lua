@@ -12,8 +12,8 @@ end
 
 avante.setup({
     -- Set providers (choose your preferred default)
-    provider = "claude", -- Options: "claude", "openai"
-    auto_suggestions_provider = "claude",
+    provider = "openai", -- Options: "claude", "openai"
+    auto_suggestions_provider = "openai",
     cursor_applying_provider = nil, -- Uses provider setting by default
 
     -- Provider configurations (new format)
@@ -22,18 +22,13 @@ avante.setup({
             endpoint = "https://api.anthropic.com",
             model = "claude-sonnet-4-20250514",
             extra_request_body = {
-                temperature = 0,
                 max_tokens = 4096,
             },
             timeout = 30000,
         },
         openai = {
             endpoint = "https://api.openai.com/v1",
-            model = "gpt-5",
-            extra_request_body = {
-                temperature = 0,
-                max_tokens = 4096,
-            },
+            model = "gpt-4.1",
             timeout = 30000,
         },
     },
@@ -134,6 +129,15 @@ avante.setup({
         autojump = true,
         list_opener = "copen",
         override_timeoutlen = 500,
+    },
+
+    input = {
+        provider = "snacks",
+        provider_opts = {
+          -- Additional snacks.input options
+          title = "Avante Input",
+          icon = " ",
+        },
     },
 
     -- Suggestion behavior

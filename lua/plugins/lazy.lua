@@ -231,6 +231,17 @@ lazy.setup({
 		"monkoose/neocodeium",
 		event = "VeryLazy",
 	},
+
+    -- A collection of QoL plugins for Neovim
+    -- Right now used by avante.nvim
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+		config = function()
+			require("snacks").setup({})
+		end,
+    },
 }, {
 	install = {
 		missing = true, -- Install missing plugins on startup
