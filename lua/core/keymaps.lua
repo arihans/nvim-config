@@ -109,6 +109,15 @@ map({ "n", "v" }, "<leader>qf", ":cfirst<CR>") -- Go to the first item on the li
 map({ "n", "v" }, "<leader>ql", ":clast<CR>") -- Go to the last item on the list.
 map({ "n", "v" }, "<leader>qN", ":col<CR>") -- Go to the previous quickfix list.
 map({ "n", "v" }, "<leader>qP", ":cnew<CR>") -- Go to the next quickfix list.
+
+-- Location list
+map({ "n", "v" }, "<leader>ll", ":lua Utils.toggleLocList()<CR>", { silent = true })
+map({ "n", "v" }, "<leader>ln", ":lnext<CR>") -- Go to the next item in the list.
+map({ "n", "v" }, "<leader>lp", ":lprev<CR>") -- Go to the previous item in the list.
+map({ "n", "v" }, "<leader>lf", ":lfirst<CR>") -- Go to the first item in the list.
+map({ "n", "v" }, "<leader>ll", ":llast<CR>") -- Go to the last item in the list.
+map({ "n", "v" }, "<leader>lN", ":lolder<CR>") -- Go to the previous location list.
+map({ "n", "v" }, "<leader>lP", ":lnewer<CR>") -- Go to the next location list.
 ---------------------------------------
 
 -- Replace current word/selection with last yanked text
@@ -190,6 +199,8 @@ end, { desc = "Open Neogit in split" })
 map("n", "<leader>gf", ":Telescope git_status<CR>") -- Fuzzy find changed files
 
 -- Neocodeium AI completion
+map("n", "<leader>nca", ":NeoCodeium toggle<CR>") -- Toggle Neocodeium
+map("n", "<leader>ncA", ":NeoCodeium toggle_buffer<CR>") -- Toggle Neocodeium buffer
 map("i", "<A-f>", function()
 	require("neocodeium").accept()
 end, { silent = true }) -- Accept suggestion
@@ -199,12 +210,17 @@ end, { silent = true }) -- Accept word
 map("i", "<A-a>", function()
 	require("neocodeium").accept_line()
 end, { silent = true }) -- Accept line
+-- Cycle suggestions only when cmp menu is not visible (integrated with cmp mappings)
 map("i", "<A-e>", function()
-	require("neocodeium").cycle_or_complete()
-end, { silent = true }) -- Cycle next suggestion
+	if not pcall(require, "cmp") or not require("cmp").visible() then
+		require("neocodeium").cycle_or_complete()
+	end
+end, { silent = true })
 map("i", "<A-r>", function()
-	require("neocodeium").cycle_or_complete(-1)
-end, { silent = true }) -- Cycle previous suggestion
+	if not pcall(require, "cmp") or not require("cmp").visible() then
+		require("neocodeium").cycle_or_complete(-1)
+	end
+end, { silent = true })
 map("i", "<A-c>", function()
 	require("neocodeium").clear()
 end, { silent = true }) -- Clear suggestions

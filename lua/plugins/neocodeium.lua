@@ -29,13 +29,13 @@ neocodeium.setup({
 		portal_url = nil,
 	},
 	-- Set to `false` to disable showing the number of suggestions label in the line number column
-	show_label = true,
+	show_label = false,
 	-- Set to `true` to enable suggestions debounce
 	debounce = true,
 	-- Maximum number of lines parsed from loaded buffers (current buffer always fully parsed)
 	-- Set to `0` to disable parsing non-current buffers (may lower suggestion quality)
 	-- Set it to `-1` to parse all lines
-	max_lines = 10000,
+	max_lines = 3000,
 	-- Set to `true` to disable some non-important messages, like "NeoCodeium: server started..."
 	silent = false,
 	-- Set to `false` to enable suggestions in special buftypes, like `nofile` etc.
@@ -54,6 +54,41 @@ neocodeium.setup({
 	-- and `false` if the buffer should be disabled
 	-- You can still enable disabled by this option buffer with `:NeoCodeium enable_buffer`
 	filter = function(bufnr)
+		-- Disable for very large buffers and special/diff buffers to keep it snappy
+		local ok_name, name = pcall(vim.api.nvim_buf_get_name, bufnr)
+		if not ok_name or name == "" then
+			return false
+		end
+
+		-- Disable in diff mode
+		if vim.wo.diff then
+			return false
+		end
+
+		-- Disable for huge files (size > 500KB)
+		local stat = vim.loop.fs_stat(name)
+		if stat and stat.size and stat.size > 500 * 1024 then
+			return false
+		end
+
+		-- Disable for extremely long files (> 6000 lines)
+		local line_count = vim.api.nvim_buf_line_count(bufnr)
+		if line_count and line_count > 6000 then
+			return false
+		end
+
+		-- Respect special buftypes
+		local buftype = vim.bo[bufnr].buftype
+		if buftype ~= "" then
+			return false
+		end
+
+		-- Only work with UTF-8 or latin1 encodings
+		local enc = vim.bo[bufnr].fileencoding
+		if enc ~= "" and enc ~= "utf-8" and enc ~= "latin1" then
+			return false
+		end
+
 		return true
 	end,
 	-- Set to `false` to disable suggestions in buffers with specific filetypes
