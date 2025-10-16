@@ -91,15 +91,10 @@ cmp.setup({
 		["<CR>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-				return
+			else
+				fallback()
 			end
-			local ok, neo = pcall(require, "neocodeium")
-			if ok then
-				neo.accept()
-				return
-			end
-			fallback()
-		end),
+		end, { "i", "c" }),
 		["<A-n>"] = cmp.mapping(function()
 			if cmp.visible() then
 				return cmp.select_next_item()
