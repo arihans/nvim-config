@@ -37,7 +37,7 @@ lazy.setup({
 	},
 
 	-- Icons
-	{ "kyazdani42/nvim-web-devicons" },
+	{ "nvim-tree/nvim-web-devicons" },
 
 	-- Treesitter interface
 	{
@@ -103,7 +103,7 @@ lazy.setup({
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
-			"kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 			"arkav/lualine-lsp-progress",
 		},
 		config = function()
@@ -114,7 +114,7 @@ lazy.setup({
 	-- Bufferline
 	{
 		"akinsho/bufferline.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	-- Surround
@@ -173,7 +173,7 @@ lazy.setup({
 	-- Dashboard (start screen)
 	{
 		"goolord/alpha-nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	-- Codeium AI completion (Windsurf.nvim) - DISABLED

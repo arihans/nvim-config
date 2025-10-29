@@ -26,7 +26,7 @@ map("n", "<TAB>", ":bnext<CR>")
 map("n", "<S-TAB>", ":bprevious<CR>")
 
 -- Clear search highlighting
-map("n", "<CR>", ":nohlsearch<CR>")
+map("n", "<CR>", ":nohl<CR><CR>")
 -- &
 --Use ctrl-c instead of escape in normal mode
 map("n", "<C-c>", ":nohl<CR><Esc>")
