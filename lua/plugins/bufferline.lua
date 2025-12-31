@@ -13,15 +13,32 @@ if not status_ok then
 end
 
 -- Set colorscheme (from colors/colorscheme_name.statusline.colorscheme_variant)
-local colors = require('colors/' .. vim.g.colorscheme)['bufferline']
+local colors
+local colorscheme_variant
 
-if colors[vim.g.colorscheme_variant] == nil then
-    local colorscheme_variant = next(colors)
+if vim.g.colorscheme and vim.g.colorscheme_variant then
+    local color_config = require('colors/' .. vim.g.colorscheme)['bufferline']
+    
+    if color_config[vim.g.colorscheme_variant] == nil then
+        colorscheme_variant = next(color_config)
+    else
+        colorscheme_variant = vim.g.colorscheme_variant
+    end
+    
+    colors = color_config[colorscheme_variant]
 else
-    local colorscheme_variant = vim.g.colorscheme_variant
+    -- Fallback colors if colorscheme is not set
+    colors = {
+        bg = '#1e1e1e',
+        fg = '#d4d4d4',
+        cyan = '#4ec9b0',
+        green = '#608b4e',
+        yellow = '#dcdcaa',
+        red = '#f44747',
+        orange = '#ff8c00',
+        pink = '#c586c0',
+    }
 end
-
-colors = colors[colorscheme_variant]
 
 bufferline.setup({
     options = {

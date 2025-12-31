@@ -8,88 +8,103 @@
 local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
+-----------------------------------------------------------
+-- Configuration Management
+-----------------------------------------------------------
+
 -- Set ColorScheme
-augroup('ReloadConfig', { clear = true })
-autocmd('BufWritePost', {
-    group = 'ReloadConfig',
-    pattern = 'options.lua',
-    callback = function()
-        if pcall(require, 'colors/' .. vim.g.colorscheme) then
-            print('[🎨] Colorscheme Reloaded')
-            Utils.reloadConfig()
-        else
-            print('[🎨] Invalid colorscheme')
-        end
-    end
+augroup("ReloadConfig", { clear = true })
+autocmd("BufWritePost", {
+	group = "ReloadConfig",
+	pattern = "options.lua",
+	callback = function()
+		if pcall(require, "colors/" .. vim.g.colorscheme) then
+			print("[🎨] Colorscheme Reloaded")
+			Utils.reloadConfig()
+		else
+			print("[🎨] Invalid colorscheme")
+		end
+	end,
 })
-autocmd('UIEnter', {
-    group = 'ReloadConfig',
-    callback = function()
-        vim.defer_fn(function()
-            if pcall(require, 'colors/' .. vim.g.colorscheme) then
-                print('[🎨] Colorscheme Reloaded')
-            else
-                print('[🎨] Invalid colorscheme')
-            end
-        end, 0)
-    end
+autocmd("UIEnter", {
+	group = "ReloadConfig",
+	callback = function()
+		vim.defer_fn(function()
+			if pcall(require, "colors/" .. vim.g.colorscheme) then
+				print("[🎨] Colorscheme Reloaded")
+			else
+				print("[🎨] Invalid colorscheme")
+			end
+		end, 0)
+	end,
 })
 
 -- Update/Install Mason packages
-augroup('MasonUpdate', { clear = true })
-autocmd('BufWritePost', {
-    group = 'MasonUpdate',
-    pattern = 'lsp/init.lua,lsp/linter.lua',
-    callback = function()
-        Utils.updateMasonPackages()
-    end,
+augroup("MasonUpdate", { clear = true })
+autocmd("BufWritePost", {
+	group = "MasonUpdate",
+	pattern = "lsp/init.lua,lsp/linter.lua",
+	callback = function()
+		Utils.updateMasonPackages()
+	end,
 })
-autocmd('UIEnter', {
-    group = 'MasonUpdate',
-    callback = function()
-        Utils.updateMasonPackages()
-    end,
-})
-
--- On any file write
-autocmd('BufWritePost', {
-    pattern = '*',
-    callback = function()
-        require('lint').try_lint()
-    end
+autocmd("UIEnter", {
+	group = "MasonUpdate",
+	callback = function()
+		Utils.updateMasonPackages()
+	end,
 })
 
--- Highlight on yank
-augroup('YankHighlight', { clear = true })
-autocmd('TextYankPost', {
-    group = 'YankHighlight',
-    callback = function()
-        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '1000' })
-    end
+-----------------------------------------------------------
+-- Code Quality & Linting
+-----------------------------------------------------------
+
+-- Run linter on file write
+autocmd("BufWritePost", {
+	pattern = "*",
+	callback = function()
+		require("lint").try_lint()
+	end,
 })
 
--- Remove whitespace on save
-autocmd('BufWritePre', {
-    pattern = '',
-    command = ":%s/\\s\\+$//e"
+-- Remove trailing whitespace on save
+autocmd("BufWritePre", {
+	pattern = "",
+	command = ":%s/\\s\\+$//e",
 })
 
--- Don't auto commenting new lines
-autocmd('BufEnter', {
-    pattern = '',
-    command = 'set fo-=c fo-=r fo-=o'
+-----------------------------------------------------------
+-- Editor Behavior
+-----------------------------------------------------------
+
+-- Highlight yanked text
+augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", {
+	group = "YankHighlight",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = "1000" })
+	end,
 })
 
--- Settings for filetypes:
--- Disable line length marker
-augroup('setLineLength', { clear = true })
-autocmd('Filetype', {
-    group = 'setLineLength',
-    pattern = { 'text', 'markdown', 'html', 'xhtml', 'javascript', 'typescript' },
-    command = 'setlocal cc=0'
+-- Disable auto commenting on new lines
+autocmd("BufEnter", {
+	pattern = "",
+	command = "set fo-=c fo-=r fo-=o",
 })
 
--- Set indentation to 2 spaces
+-----------------------------------------------------------
+-- Filetype-specific Settings
+-----------------------------------------------------------
+
+-- Disable line length marker for certain filetypes
+augroup("setLineLength", { clear = true })
+autocmd("Filetype", {
+	group = "setLineLength",
+	pattern = { "text", "markdown", "html", "xhtml", "javascript", "typescript" },
+	command = "setlocal cc=0",
+})
+
+-- Set indentation to 2 spaces (currently disabled)
 -- augroup('setIndent', { clear = true })
 -- autocmd('Filetype', {
 --   group = 'setIndent',
@@ -99,24 +114,44 @@ autocmd('Filetype', {
 --   command = 'setlocal shiftwidth=2 tabstop=2'
 -- })
 
--- Terminal settings:
--- Open a Terminal on the right tab
-autocmd('CmdlineEnter', {
-    command = 'command! Term :botright vsplit term://$SHELL'
+-----------------------------------------------------------
+-- Terminal Settings
+-----------------------------------------------------------
+
+-- Create Terminal command
+autocmd("CmdlineEnter", {
+	command = "command! Term :botright vsplit term://$SHELL",
 })
 
--- Enter insert mode when switching to terminal
-autocmd('TermOpen', {
-    command = 'setlocal listchars= nonumber norelativenumber nocursorline',
+-- Configure terminal appearance and behavior
+autocmd("TermOpen", {
+	command = "setlocal listchars= nonumber norelativenumber nocursorline",
 })
 
-autocmd('TermOpen', {
-    pattern = '',
-    command = 'startinsert'
+-- Enter insert mode when opening terminal
+autocmd("TermOpen", {
+	pattern = "",
+	command = "startinsert",
 })
 
--- Close terminal buffer on process exit
-autocmd('BufLeave', {
-    pattern = 'term://*',
-    command = 'stopinsert'
+-- Exit insert mode when leaving terminal
+autocmd("BufLeave", {
+	pattern = "term://*",
+	command = "stopinsert",
+})
+
+-----------------------------------------------------------
+-- Plugin Integration
+-----------------------------------------------------------
+
+-- NeoCodeium: Close nvim-cmp when AI completions are displayed
+autocmd("User", {
+	pattern = "NeoCodeiumCompletionDisplayed",
+	callback = function()
+		local cmp_ok, cmp = pcall(require, "cmp")
+		if cmp_ok then
+			cmp.abort()
+		end
+	end,
+	desc = "Close nvim-cmp when NeoCodeium shows completions",
 })
