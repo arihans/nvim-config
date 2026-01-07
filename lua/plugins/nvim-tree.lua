@@ -42,11 +42,10 @@ nvim_tree.setup {
     highlight_git = false,
     highlight_opened_files = "none",
     root_folder_label = false,
-
+    group_empty = true,
     indent_markers = {
       enable = false,
     },
-
     icons = {
       show = {
         file = true,
