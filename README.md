@@ -102,6 +102,8 @@ Modify `core/options.lua` to adjust Neovim's behavior and appearance.
 
 1. Install new language servers via Mason (`:Mason` command)
 2. Configure language servers in `lsp/init.lua`
+3. **Important**: All LSP server configurations belong in `lsp/init.lua`, not in filetype plugins
+4. Filetype plugins in `after/ftplugin/` are only for editor settings (tab width, indentation, etc.), not LSP configuration
 
 ### Appearance Customization
 

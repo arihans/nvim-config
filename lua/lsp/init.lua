@@ -22,7 +22,51 @@ _G.LSP_servers = {
 	bashls = {},
 	clangd = {},
 	cssls = {},
+	eslint = {
+		settings = {
+			format = true,
+		},
+	},
 	html = {},
+	jdtls = {
+		cmd = {
+			"jdtls",
+			"--jvm-arg=-javaagent:" .. os.getenv("HOME") .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+		},
+		root_dir = function(fname)
+			local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+			local root = require("lspconfig.util").root_pattern(unpack(root_markers))(fname)
+			return root or require("lspconfig.util").find_git_ancestor(fname) or vim.fn.getcwd()
+		end,
+		settings = {
+			java = {
+				configuration = {
+					runtimes = {
+						{
+							name = "JavaSE-17",
+							path = "/usr/lib/jvm/java-17-openjdk",
+						},
+					},
+				},
+				format = {
+					enabled = true,
+				},
+			},
+		},
+		init_options = {
+			workspace = function()
+				local home = os.getenv("HOME")
+				local root =
+					require("lspconfig.util").root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle")(
+						vim.fn.expand("%:p")
+					)
+				if root then
+					return home .. "/.local/share/nvim/jdtls-workspace/" .. vim.fn.fnamemodify(root, ":p:h:t")
+				end
+				return home .. "/.local/share/nvim/jdtls-workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+			end,
+		},
+	},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -104,11 +148,6 @@ _G.LSP_servers = {
 					includeInlayEnumMemberValueHints = true,
 				},
 			},
-		},
-	},
-	eslint = {
-		settings = {
-			format = true,
 		},
 	},
 	yamlls = {},
