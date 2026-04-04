@@ -240,6 +240,12 @@ lazy.setup({
 		},
 	},
 
+	-- CSV Viewer
+	{ "hat0uma/csvview.nvim" },
+
+	-- Rainbow CSV
+	{ "cameron-wags/rainbow_csv.nvim" },
+
 	-- A collection of QoL plugins for Neovim
 	-- Right now used by avante.nvim
 	{
