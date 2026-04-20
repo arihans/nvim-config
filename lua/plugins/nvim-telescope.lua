@@ -14,6 +14,7 @@ local actions = require("telescope.actions")
 
 telescope.setup {
     defaults = {
+        path_display = { "smart" },
         mappings = {
             i = {
                 ["<C-l>"] = actions.smart_send_to_qflist + actions.open_qflist  -- Open quickfix list
