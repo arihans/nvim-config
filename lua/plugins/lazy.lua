@@ -231,6 +231,9 @@ lazy.setup({
 		opts = {
 			file_types = { "markdown", "Avante" },
 			ft = { "markdown", "Avante" },
+			injections = {
+				enabled = false,
+			},
 			tables = {
 				strict = true,
 			},
