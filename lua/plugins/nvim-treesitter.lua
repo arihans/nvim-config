@@ -8,23 +8,9 @@ if not status_ok then
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = {
-		"bash",
-		"c",
-		"css",
-		"html",
-		"javascript",
-		"typescript",
-		"tsx",
-		"json",
-		"lua",
-		"python",
-		"vim",
-		"yaml",
-		"markdown",
-	},
+	pattern = "*",
 	callback = function()
-		vim.treesitter.start()
+		pcall(vim.treesitter.start)
 		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 	end,
 })
