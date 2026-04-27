@@ -34,11 +34,7 @@ nvim_treesitter.setup({
 	-- Autoinstall parsers when entering buffer
 	auto_install = true,
 	highlight = {
-		-- `false` will disable the whole extension
 		enable = true,
-		-- Use language from treesitter for highlighting
-		use_languagetree = true,
-		-- Additional vim syntax highlighting (can be disabled when treesitter highlighting is enabled)
 		additional_vim_regex_highlighting = false,
 	},
 	indent = {
