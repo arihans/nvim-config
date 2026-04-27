@@ -42,9 +42,9 @@ lazy.setup({
 	-- Treesitter interface
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
 	},
 
 	-- Color schemes --------------------
@@ -230,16 +230,6 @@ lazy.setup({
 		"MeanderingProgrammer/render-markdown.nvim",
 		opts = {
 			file_types = { "markdown", "Avante" },
-			ft = { "markdown", "Avante" },
-			injections = {
-				enabled = false,
-			},
-			tables = {
-				strict = true,
-			},
-			refresh = {
-				interval = 1000,
-			},
 		},
 	},
 
