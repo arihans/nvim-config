@@ -29,22 +29,43 @@ _G.LSP_servers = {
 	},
 	html = {},
 	jdtls = {
-		cmd = {
-			"jdtls",
-			"--jvm-arg=-javaagent:" .. os.getenv("HOME") .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
-		},
-		root_dir = function(fname)
+		-- `cmd` is called with the resolved root_dir, so the per-project
+		-- workspace dir must be built here (as a -data flag) rather than in
+		-- init_options: init_options is sent verbatim as JSON to the server
+		-- and can't contain a function.
+		cmd = function(dispatchers, config)
+			local home = os.getenv("HOME")
+			local workspace_dir = home
+				.. "/.local/share/nvim/jdtls-workspace/"
+				.. vim.fn.fnamemodify(config.root_dir, ":p:h:t")
+			local cmd = {
+				"jdtls",
+				"--jvm-arg=-javaagent:" .. home .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+				"-data",
+				workspace_dir,
+			}
+			return vim.lsp.rpc.start(cmd, dispatchers, {
+				cwd = config.cmd_cwd,
+				env = config.cmd_env,
+				detached = config.detached,
+			})
+		end,
+		-- Nvim 0.11+ requires the async form: the function must call
+		-- on_dir(dir) itself rather than returning a string. Returning a
+		-- string here (the old lspconfig-setup() style) leaves the on_dir
+		-- callback unconsumed and breaks client startup with
+		-- "E729: Using a Funcref as a String".
+		root_dir = function(bufnr, on_dir)
 			local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-			local root = require("lspconfig.util").root_pattern(unpack(root_markers))(fname)
-			return root or require("lspconfig.util").find_git_ancestor(fname) or vim.fn.getcwd()
+			on_dir(vim.fs.root(bufnr, root_markers) or vim.fn.getcwd())
 		end,
 		settings = {
 			java = {
 				configuration = {
 					runtimes = {
 						{
-							name = "JavaSE-17",
-							path = "/usr/lib/jvm/java-17-openjdk",
+							name = "JavaSE-21",
+							path = "/usr/lib/jvm/java-21-openjdk",
 						},
 					},
 				},
@@ -52,19 +73,6 @@ _G.LSP_servers = {
 					enabled = true,
 				},
 			},
-		},
-		init_options = {
-			workspace = function()
-				local home = os.getenv("HOME")
-				local root =
-					require("lspconfig.util").root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle")(
-						vim.fn.expand("%:p")
-					)
-				if root then
-					return home .. "/.local/share/nvim/jdtls-workspace/" .. vim.fn.fnamemodify(root, ":p:h:t")
-				end
-				return home .. "/.local/share/nvim/jdtls-workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-			end,
 		},
 	},
 	lua_ls = {
