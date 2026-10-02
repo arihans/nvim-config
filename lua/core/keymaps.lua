@@ -72,6 +72,9 @@ map("n", "<M-l>", ":vertical resize +2<CR>")
 
 -- Open file/definition to the side
 map("n", "<C-]>", ":vert winc ]<CR>")
+
+-- Close current tab (e.g. Diffview)
+map("n", "<leader>x", "<cmd>tabclose<CR>", { desc = "Close tab" })
 ---------------------------------------
 
 -- Delete Buffers --------------------
@@ -175,9 +178,6 @@ map("n", "<leader>so", "<cmd>AerialToggle<CR>")
 map("n", "<leader>aa", "<cmd>AvanteAsk<CR>")
 
 -- Neogit - Interactive Git interface
-map("n", "<leader>gs", function()
-	require("neogit").open()
-end, { desc = "Open Neogit status" })
 map("n", "<leader>gg", function()
 	require("neogit").open()
 end, { desc = "Open Neogit" })
@@ -197,6 +197,13 @@ map("n", "<leader>gm", function()
 	require("neogit").open({ kind = "split" })
 end, { desc = "Open Neogit in split" })
 map("n", "<leader>gf", ":Telescope git_status<CR>") -- Fuzzy find changed files
+
+-- File history (diffview) and blame (gitsigns)
+map("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", { desc = "File history" })
+map("v", "<leader>gh", ":DiffviewFileHistory<CR>", { desc = "Selection history" })
+map("n", "<leader>gB", "<cmd>Gitsigns blame<CR>", { desc = "Blame file" })
+map("n", "<leader>gL", "<cmd>Gitsigns blame_line full=true<CR>", { desc = "Blame line" })
+map("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle inline blame" })
 
 -- Neocodeium AI completion
 map("n", "<leader>nca", ":NeoCodeium toggle<CR>") -- Toggle Neocodeium

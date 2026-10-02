@@ -133,6 +133,7 @@ This section provides an overview of the default and custom keybindings included
 - `<C-h>`, `<C-j>`, `<C-k>`, `<C-l>` : Move between splits
 - `<M-h>`, `<M-j>`, `<M-k>`, `<M-l>` : Resize splits
 - `<C-]>` : Open definition in a vertical split
+- `<leader>x` : Close current tab (e.g. Diffview)
 
 #### Buffer Management
 
@@ -167,14 +168,20 @@ This section provides an overview of the default and custom keybindings included
 
 ##### Neogit (Interactive Git Interface)
 
-- `<leader>gs` : Open Neogit status (main interface)
-- `<leader>gg` : Open Neogit main interface
+- `<leader>gg` : Open Neogit status (main interface)
 - `<leader>gc` : Open Neogit commit popup
 - `<leader>gp` : Open Neogit push popup
 - `<leader>gl` : Open Neogit pull popup
 - `<leader>gb` : Open Neogit branch popup
 - `<leader>gm` : Open Neogit in split view
 - `<leader>gf` : Fuzzy find changed files (Telescope)
+
+##### History & Blame
+
+- `<leader>gh` : File history (Diffview); in visual mode, history of the selected lines
+- `<leader>gB` : Blame panel for the whole file (Gitsigns)
+- `<leader>gL` : Blame popup for the current line, with full commit (Gitsigns)
+- `<leader>gt` : Toggle inline blame on the current line (Gitsigns)
 
 #### AI-Powered Development
 
