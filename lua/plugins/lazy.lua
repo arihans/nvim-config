@@ -219,12 +219,6 @@ lazy.setup({
 		},
 	},
 
-	-- Neocodeium for AI completions
-	{
-		"monkoose/neocodeium",
-		event = "VeryLazy",
-	},
-
 	-- Markdown rendering
 	{
 		"MeanderingProgrammer/render-markdown.nvim",

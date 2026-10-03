@@ -80,13 +80,7 @@ cmp.setup({
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-u>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping(function()
-			local ok, neo = pcall(require, "neocodeium")
-			if ok then
-				neo.cycle_or_complete()
-			end
-			cmp.complete()
-		end),
+		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -95,24 +89,6 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "c" }),
-		["<A-n>"] = cmp.mapping(function()
-			if cmp.visible() then
-				return cmp.select_next_item()
-			end
-			local ok, neo = pcall(require, "neocodeium")
-			if ok then
-				neo.cycle_or_complete(1)
-			end
-		end),
-		["<A-p>"] = cmp.mapping(function()
-			if cmp.visible() then
-				return cmp.select_prev_item()
-			end
-			local ok, neo = pcall(require, "neocodeium")
-			if ok then
-				neo.cycle_or_complete(-1)
-			end
-		end),
 	}),
 
 	-- Load sources, see: https://github.com/topics/nvim-cmp

@@ -204,30 +204,3 @@ map("v", "<leader>gh", ":DiffviewFileHistory<CR>", { desc = "Selection history" 
 map("n", "<leader>gB", "<cmd>Gitsigns blame<CR>", { desc = "Blame file" })
 map("n", "<leader>gL", "<cmd>Gitsigns blame_line full=true<CR>", { desc = "Blame line" })
 map("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle inline blame" })
-
--- Neocodeium AI completion
-map("n", "<leader>nca", ":NeoCodeium toggle<CR>") -- Toggle Neocodeium
-map("n", "<leader>ncA", ":NeoCodeium toggle_buffer<CR>") -- Toggle Neocodeium buffer
-map("i", "<A-f>", function()
-	require("neocodeium").accept()
-end, { silent = true }) -- Accept suggestion
-map("i", "<A-w>", function()
-	require("neocodeium").accept_word()
-end, { silent = true }) -- Accept word
-map("i", "<A-a>", function()
-	require("neocodeium").accept_line()
-end, { silent = true }) -- Accept line
--- Cycle suggestions only when cmp menu is not visible (integrated with cmp mappings)
-map("i", "<A-e>", function()
-	if not pcall(require, "cmp") or not require("cmp").visible() then
-		require("neocodeium").cycle_or_complete()
-	end
-end, { silent = true })
-map("i", "<A-r>", function()
-	if not pcall(require, "cmp") or not require("cmp").visible() then
-		require("neocodeium").cycle_or_complete(-1)
-	end
-end, { silent = true })
-map("i", "<A-c>", function()
-	require("neocodeium").clear()
-end, { silent = true }) -- Clear suggestions

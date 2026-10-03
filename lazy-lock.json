@@ -27,7 +27,6 @@
   "material.nvim": { "branch": "main", "commit": "92f7366a9315cd386bc4fa4d716fde375dda210f" },
   "mini.pick": { "branch": "main", "commit": "437d44eb57312f23e6b931704694fc294922cd88" },
   "monokai.nvim": { "branch": "master", "commit": "b8bd44d5796503173627d7a1fc51f77ec3a08a63" },
-  "neocodeium": { "branch": "main", "commit": "c1d543d69c808f02fd7cc6327e3551c4dedb0112" },
   "neogit": { "branch": "master", "commit": "792c139da736230855e8341ebe6175bb6eb8268b" },
   "neovim": { "branch": "main", "commit": "9504524e5ed0e326534698f637f9d038ba4cd0ee" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },

@@ -139,19 +139,3 @@ autocmd("BufLeave", {
 	pattern = "term://*",
 	command = "stopinsert",
 })
-
------------------------------------------------------------
--- Plugin Integration
------------------------------------------------------------
-
--- NeoCodeium: Close nvim-cmp when AI completions are displayed
-autocmd("User", {
-	pattern = "NeoCodeiumCompletionDisplayed",
-	callback = function()
-		local cmp_ok, cmp = pcall(require, "cmp")
-		if cmp_ok then
-			cmp.abort()
-		end
-	end,
-	desc = "Close nvim-cmp when NeoCodeium shows completions",
-})

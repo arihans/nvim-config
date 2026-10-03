@@ -35,7 +35,7 @@ avante.setup({
 
     -- Experimental dual boost mode (combine multiple providers)
     dual_boost = {
-        enabled = true,
+        enabled = false, -- Requires both ANTHROPIC_API_KEY and OPENAI_API_KEY
         first_provider = "claude",
         second_provider = "openai",
         prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
@@ -44,7 +44,7 @@ avante.setup({
 
     -- Core behavior settings
     behaviour = {
-        auto_suggestions = false, -- Disabled to prevent errors
+        auto_suggestions = true, -- Inline AI completions (accept with <Tab>)
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,

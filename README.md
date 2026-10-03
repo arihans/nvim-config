@@ -44,14 +44,13 @@ This Neovim configuration is organized in a modular structure using Lua:
 - **plugins/bufferline.lua**: Buffer management
 - **plugins/nvim-telescope.lua**: Fuzzy finder configuration
 - **plugins/nvim-treesitter.lua**: Advanced syntax highlighting
-- **plugins/nvim-cmp.lua**: Completion engine configuration with AI integration
+- **plugins/nvim-cmp.lua**: Completion engine configuration
 - **plugins/aerial.lua**: Symbol navigation and outline view
 - **plugins/undotree.lua**: Undo history visualization
 - **plugins/alpha-nvim.lua**: Dashboard configuration
 - **plugins/indent-blankline.lua**: Indentation guides
 - **plugins/nvim-colorizer.lua**: Color highlighting in code
-- **plugins/neocodeium.lua**: AI code completion configuration
-- **plugins/avante.lua**: AI code chat configuration
+- **plugins/avante.lua**: AI code completion and chat configuration
 - **plugins/comment-nvim.lua**: Enhanced commenting
 - **plugins/marks-nvim.lua**: Bookmark management
 - **plugins/todo-comments.nvim**: TODO highlighting and search
@@ -185,31 +184,23 @@ This section provides an overview of the default and custom keybindings included
 
 #### AI-Powered Development
 
-##### Neocodeium AI Completion
+##### Avante AI Completion
 
-Use these in insert mode for AI-powered code suggestions:
+Inline suggestions appear in insert mode as you type:
 
-- `<A-]>` - Accept word suggestion
-- `<A-a>` - Accept line suggestion
-- `<A-e>` - Cycle or complete suggestion
-- `<A-r>` - Cycle or complete suggestion (reverse)
-- `<A-c>` - Clear suggestion
+- `<Tab>` - Accept suggestion
+- `<C-n>` / `<C-p>` - Next / previous suggestion
+- `<Esc>` - Dismiss suggestion
 
 ##### Avante AI Chat
 
 - `<leader>aa` - Start AI conversation about your code
 
-**Note:** Neocodeium provides free AI-powered code completion that works seamlessly with nvim-cmp. It offers intelligent suggestions based on your codebase and context. Avante enables interactive AI conversations about your code with support for multiple AI providers.
+**Note:** Avante provides both inline AI completion and interactive AI conversations about your code, with support for multiple AI providers.
 
 ## AI Features Setup (Optional)
 
-### Neocodeium (AI Code Completion)
-
-1. Run `:NeoCodeium auth` to authenticate with Windsurf
-2. The plugin integrates automatically with nvim-cmp
-3. Configure in `lua/plugins/neocodium.lua` if needed
-
-### Avante (AI Code Chat)
+### Avante (AI Code Completion and Chat)
 
 1. Set your API keys in environment variables for Claude/OpenAI
 2. Press `<leader>aa` to start an AI conversation
