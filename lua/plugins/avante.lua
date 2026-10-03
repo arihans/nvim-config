@@ -12,12 +12,22 @@ end
 
 avante.setup({
     -- Set providers (choose your preferred default)
-    provider = "openai", -- Options: "claude", "openai"
-    auto_suggestions_provider = "openai",
+    provider = "gemini", -- Options: "gemini", "claude", "openai"
+    auto_suggestions_provider = "gemini_suggest", -- Faster, cheaper model for inline completions
     cursor_applying_provider = nil, -- Uses provider setting by default
 
     -- Provider configurations (new format)
     providers = {
+        gemini = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+            model = "gemini-flash-latest", -- Pro needs a paid plan (free-tier quota is 0)
+            timeout = 30000,
+        },
+        gemini_suggest = {
+            __inherited_from = "gemini",
+            model = "gemini-flash-lite-latest",
+            timeout = 10000,
+        },
         claude = {
             endpoint = "https://api.anthropic.com",
             model = "claude-sonnet-4-20250514",
