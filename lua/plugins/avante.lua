@@ -20,7 +20,7 @@ avante.setup({
     providers = {
         gemini = {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-            model = "gemini-flash-latest", -- Pro needs a paid plan (free-tier quota is 0)
+            model = "gemini-3.8-flash", -- Pro needs a paid plan (free-tier quota is 0)
             timeout = 30000,
         },
         gemini_suggest = {
@@ -56,7 +56,7 @@ avante.setup({
     behaviour = {
         auto_suggestions = true, -- Inline AI completions (accept with <Tab>)
         auto_set_highlight_group = true,
-        auto_set_keymaps = true,
+        auto_set_keymaps = false, -- Global <leader>a* keymaps are defined in core/keymaps.lua
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
         minimize_diff = true,
@@ -76,10 +76,10 @@ avante.setup({
             prev = "[x",
         },
         suggestion = {
-            accept = "<Tab>",
-            next = "<C-n>",
-            prev = "<C-p>",
-            dismiss = "<Esc>",
+            accept = "<M-l>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
         },
         jump = {
             next = "]]",

@@ -188,13 +188,21 @@ This section provides an overview of the default and custom keybindings included
 
 Inline suggestions appear in insert mode as you type:
 
-- `<Tab>` - Accept suggestion
-- `<C-n>` / `<C-p>` - Next / previous suggestion
-- `<Esc>` - Dismiss suggestion
+- `<M-l>` - Accept suggestion
+- `<M-]>` / `<M-[>` - Next / previous suggestion
+- `<C-]>` - Dismiss suggestion
+- `<leader>as` - Toggle inline suggestions
 
 ##### Avante AI Chat
 
-- `<leader>aa` - Start AI conversation about your code
+- `<leader>aa` - Ask about your code (in visual mode, about the selection)
+- `<leader>an` - New chat
+- `<leader>ae` - Edit the selection with AI (visual mode)
+- `<leader>at` / `<leader>af` - Toggle / focus the sidebar
+- `<leader>ac` / `<leader>aB` - Add current file / all buffers to the chat context
+- `<leader>ah` - Chat history
+- `<leader>a?` - Select model
+- `<leader>aS` - Stop the current request
 
 **Note:** Avante provides both inline AI completion and interactive AI conversations about your code, with support for multiple AI providers.
 

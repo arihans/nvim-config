@@ -174,8 +174,32 @@ map("n", "<leader>cb", "<cmd>ColorizerToggle<CR>")
 -- Symbols-Outline
 map("n", "<leader>so", "<cmd>AerialToggle<CR>")
 
--- Avante for code chat
-map("n", "<leader>aa", "<cmd>AvanteAsk<CR>")
+-- Avante AI ---------------------------
+-- Contextual keys (diff, sidebar, inline suggestions) are set in plugins/avante.lua
+map({ "n", "v" }, "<leader>aa", function()
+	require("avante.api").ask()
+end, { desc = "Avante: ask (about selection in visual mode)" })
+map({ "n", "v" }, "<leader>an", function()
+	require("avante.api").ask({ new_chat = true })
+end, { desc = "Avante: new chat" })
+map("v", "<leader>ae", function()
+	require("avante.api").edit()
+end, { desc = "Avante: edit selection" })
+map("n", "<leader>at", "<cmd>AvanteToggle<CR>", { desc = "Avante: toggle sidebar" })
+map("n", "<leader>af", "<cmd>AvanteFocus<CR>", { desc = "Avante: focus sidebar" })
+map("n", "<leader>ac", function()
+	require("avante.api").add_selected_file(vim.fn.expand("%:p"))
+end, { desc = "Avante: add current file to context" })
+map("n", "<leader>aB", function()
+	require("avante.api").add_buffer_files()
+end, { desc = "Avante: add all buffers to context" })
+map("n", "<leader>ah", "<cmd>AvanteHistory<CR>", { desc = "Avante: chat history" })
+map("n", "<leader>a?", "<cmd>AvanteModels<CR>", { desc = "Avante: select model" })
+map("n", "<leader>aS", "<cmd>AvanteStop<CR>", { desc = "Avante: stop request" })
+map("n", "<leader>as", function()
+	require("avante").toggle.suggestion()
+end, { desc = "Avante: toggle inline suggestions" })
+---------------------------------------
 
 -- Neogit - Interactive Git interface
 map("n", "<leader>gg", function()
